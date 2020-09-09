@@ -1,0 +1,47 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}maisons{% endblock %}
+
+{% block body %}
+    
+    {{ parent() }}
+
+    <div class="col-10 p-3">
+        <h2> Liste des maisons </ph>
+        <table class="table table-bordered table-hover table-sm text-center">
+            <thead>
+                <tr>
+                    <th scope="col"> N°</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Chambres</th>
+                    <th scope="col">Prix</th>
+                    <th scope="col">Note</th>
+                    <th scope="col">Superficie</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for maison in maisons %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ maison.titre }}</td>
+                        <td>{{ maison.description }}</td>
+                        <td>{{ maison.chambres }}</td>
+                        <td>{{ maison.prix }}</td>
+                        <td>{{ maison.note }}</td>
+                        <td>{{ maison.superficie }}</td>
+                        <td>
+                            <a href="">Modifier</a> <a href="">Supprimer</a>
+                        </td>
+                    </tr>
+                   
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{{ path('maison_create') }}">Ajouter</a>
+    </div>
+
+
+
+{% endblock %}

@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html>
+
     <head>
+
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta name="description" content="site BnB">
+        <meta name="viewport" content="width=device-width, initiale-scale=1.0">
+        <meta name="author" content="Astrid Pastel">
+
+
+        <title>{% block title %}BnB - {% endblock %}</title>
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
         {% block stylesheets %}{% endblock %}
+
     </head>
+
     <body>
+
+
+         <footer>
+
+            <div class="container-fluid">
+
+                <div class="row text-center bg-dark text-white">
+                    <div class="col-6 p-5 font-veight-light">
+                        <p class="font-veight-bold">Coordonn&eacute;es</p>
+                        <div class="dropdow-divider m-3"></div>
+                        <p> 100 rue de la ville</p>
+                        <p>70 000 Ville</p>
+                        <p>01.69.12.34.56</p>
+                        <p>mon.prenom@gmail.com</p>
+                    </div>
+                    <div class="col-6 p-5 font-weitght-light">
+                        <p class="font-weight-bold">&Agrave; propos</p>
+                        <div class="dropdown-divider m-3"></div>
+                        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. "</p>
+                    </div>
+                    <div class="col-12 p-3 font-weight-light">
+                         {{ copyright|raw }}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+        <script src ="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
         {% block body %}{% endblock %}
+
         {% block javascripts %}{% endblock %}
+
+       
+
     </body>
+
 </html>
