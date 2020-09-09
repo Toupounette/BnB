@@ -32,14 +32,15 @@
                         <td>{{ maison.note }}</td>
                         <td>{{ maison.superficie }}</td>
                         <td>
-                            <a href="">Modifier</a> <a href="">Supprimer</a>
+                            <a href="{{ path('maison_update', {'id':maison.id}) }}">Modifier</a> 
+                            <a href="{{ path('maison_delete', {'id':maison.id}) }}">Supprimer</a>
                         </td>
                     </tr>
                    
                 {% endfor %}
             </tbody>
         </table>
-        <a href="{{ path('maison_create') }}">Ajouter</a>
+        <a href="{{ path('maison_create') }}" class="btn btn-outline-dark float-right">Ajouter</a>
     </div>
 
 

@@ -40,7 +40,14 @@ class AdminMaisonsController extends AbstractController
              $manager = $this->getDoctrine()->getManager();
              $manager->persist($maison);
              $manager->flush();
-             return $this->redirecToRoute('admin_maisons');
+             
+            
+            $this->addFlash(
+                'success',
+                'La maison a bien été ajoutée'
+            );
+            
+             return $this->redirectToRoute('admin_maisons');
          }
 
 
@@ -49,4 +56,63 @@ class AdminMaisonsController extends AbstractController
              'formulaireMaison' => $form->createView()
          ]);
      }
+
+
+
+
+
+     /**
+      * @Route("/admin/maison/update-{id}", name="maison_update")
+      */
+      public function updateMaison(MaisonsRepository $maisonsRepository, $id, Request $request)
+      {
+          $maison = $maisonsRepository->find($id);
+
+          $form = $this->createForm(MaisonType::class, $maison);
+          $form->handleRequest($request);
+
+          if($form->isSubmitted() && $form->isValid()){
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($maison);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'La maison a bien été modifiée'
+            );
+
+
+            return $this->redirectToRoute('admin_maisons');
+        }
+
+          return $this->render('admin/adminMaisonsForm.html.twig',[
+              'formulaireMaison' => $form->createView()
+          ]);
+      }
+
+
+
+
+
+     /**
+      * @Route("/admin/maisons/delete-{id}", name="maison_delete")
+      */
+
+    public function deleteMaison(MaisonsRepository $maisonsRepository, $id)
+    {   
+        $maison = $maisonsRepository->find($id);
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($maison);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            'La maison a bien été supprimée'
+        );
+
+
+        return $this->redirectToRoute('admin_maisons');
+    }
+
 }
